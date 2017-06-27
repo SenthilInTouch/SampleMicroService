@@ -22,7 +22,7 @@ public class OrderService {
 	@Autowired
 	private OrderDao orderDao;
 	
-	private RestTemplate objRestTemplate;
+	private RestTemplate objRestTemplate = new RestTemplate();
 
 	@PostMapping("/order")
 	public Order submitOrder(@RequestBody List<Long> itemIds) {
@@ -31,7 +31,7 @@ public class OrderService {
 		List<Item> orderedItems = new ArrayList<Item>();
 		for(Long itemId : itemIds) {
 			orderedItem = new Item();
-			objRestTemplate = new RestTemplate();
+
 			orderedItem = objRestTemplate.getForObject(
 					"http://localhost:8080/FoodMenuService/item/{itemId}", Item.class,
 					itemId);
@@ -48,7 +48,6 @@ public class OrderService {
 
 		for(Long itemId : itemIds) {
 			orderedItem = new Item();
-			objRestTemplate = new RestTemplate();
 			orderedItem = objRestTemplate.getForObject(
 					"http://localhost:8080/FoodMenuService/item/{itemId}", Item.class,
 					itemId);
