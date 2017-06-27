@@ -62,7 +62,7 @@ public class FoodOrderServiceDemoTest {
                 .standaloneSetup(objOrderService)
                 .build();
     }
-    
+
     @Before
     public void setup() {
     	menu.setMenuName("Indian");
